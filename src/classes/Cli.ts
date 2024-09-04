@@ -188,7 +188,7 @@ class Cli {
           parseInt(answers.towingCapacity)
         );
         // TODO: Use the answers object to pass the required properties to the Truck constructor
-        // TODO: push the truck to the vehicles array
+        // TODO: push the truck to the vehicles array ???
         // TODO: set the selectedVehicleVin to the vin of the truck
         // TODO: perform actions on the truck
         this.vehicles.push(truck);
@@ -267,7 +267,7 @@ class Cli {
           ]
         );
         // TODO: Use the answers object to pass the required properties to the Motorbike constructor
-        // TODO: push the motorbike to the vehicles array
+        // TODO: push the motorbike to the vehicles array ???
         // TODO: set the selectedVehicleVin to the vin of the motorbike
         // TODO: perform actions on the motorbike
         this.vehicles.push(motorbike);
@@ -275,7 +275,6 @@ class Cli {
         this.performActions();
       });
   }
-
   // method to find a vehicle to tow
   // TODO: add a parameter to accept a truck object
   findVehicleToTow(truck:any): void {
@@ -302,7 +301,6 @@ class Cli {
       else {truck.tow(answers.vehicleToTow);}
         this.performActions();
         // TODO: if it is, log that the truck cannot tow itself then perform actions on the truck to allow the user to select another action
-***I"M RIGHT HERE***
         // TODO: if it is not, tow the selected vehicle then perform actions on the truck to allow the user to select another action
       });
   }
@@ -317,8 +315,6 @@ class Cli {
           message: 'Select an action',
           // TODO: add options to tow and wheelie
           choices: [
-            'Tow',
-            'Wheelie',
             'Print details',
             'Start vehicle',
             'Accelerate 5 MPH',
@@ -327,6 +323,8 @@ class Cli {
             'Turn right',
             'Turn left',
             'Reverse',
+            'Tow',
+            'Wheelie',
             'Select or create another vehicle',
             'Exit',
           ],
@@ -405,6 +403,17 @@ class Cli {
           }
         }
         // TODO: add statements to perform the wheelie action only if the selected vehicle is a motorbike
+        else if (answers.action === 'Wheelie') {
+          for (let i = 0; i < this.vehicles.length; i++) {
+            if (this.vehicles[i].vin === this.selectedVehicleVin) {
+                if (this.vehicles[i] instanceof Motorbike) {
+                  (this.vehicles[i] as Motorbike).wheelie();
+              } else {
+                console.log('Only motorbikes can do a wheelie');
+              }             
+            }
+          }
+        }
         else if (answers.action === 'Select or create another vehicle')
           
           {
@@ -420,7 +429,7 @@ class Cli {
           this.performActions();
         }
       });
-  }
+  };
 
   // method to start the cli
   startCli(): void {

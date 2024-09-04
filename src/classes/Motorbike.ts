@@ -1,5 +1,4 @@
 // Importing Vehicle and Wheel classes
-import { log } from 'console';
 import Vehicle from './Vehicle.js';
 import Wheel from './Wheel.js';
 
